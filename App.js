@@ -135,7 +135,7 @@ const main = () => {
   const [assets] = useAssets(
     require("./assets/icon-square.png"),
     require("./assets/chat.png"),
-    require("./assets/chatbg.png"),
+    require("./assets/chatbg.jpg"),
   );
   if (!assets) {
     return (
