@@ -1,6 +1,5 @@
-
 import React, { useContext, useState } from "react";
-import { View, Text, Image, TextInput, Button } from "react-native";
+import { View, Text, Image, TextInput, Button, Modal } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Context from "../context/Context";
 import { signIn, signUp } from "../firebase";
@@ -8,11 +7,22 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [mode, setMode] = useState("signUp");
+  const [v1, setV1] = useState(false);
+  const [v2, setV2] = useState(false);
   const {
     theme: { colors },
   } = useContext(Context);
 
   async function handlePress() {
+    if (!email || !password || email === "" || password.length < 8) {
+      if (password.length < 8 || !password) {
+        setV1(true);
+        return
+      }else{
+        setV2(true);
+        return
+      }
+    }
     if (mode === "signUp") {
       await signUp(email, password);
     }
@@ -29,6 +39,46 @@ export default function SignIn() {
         backgroundColor: colors.white,
       }}
     >
+      <Modal
+        visible={v1}
+        animationType="fade"
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Text>هل تعتبر هذه كلمة مرور</Text>
+          <Button title="تعديل" onPress={() => setV1(false)}/>
+        </View>
+      </Modal>
+      <Modal
+        visible={v2}
+        animationType="fade"
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Text>هل تعتبر هذا بريدا الاكترونيا</Text>
+          <Button title="تعديل" onPress={() => setV2(false)}/>
+        </View>
+      </Modal>
       <Text
         style={{ color: colors.foreground, fontSize: 24, marginBottom: 20 }}
       >
