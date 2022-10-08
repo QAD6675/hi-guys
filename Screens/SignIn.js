@@ -14,7 +14,7 @@ export default function SignIn() {
   } = useContext(Context);
 
   async function handlePress() {
-    if (!email || !password || email === "" || password.length < 8) {
+    if (!email || !password || email.length <8 || password.length < 8) {
       if (password.length < 8 || !password) {
         setV1(true);
         return
