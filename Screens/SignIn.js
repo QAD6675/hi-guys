@@ -1,6 +1,13 @@
 import React, { useContext, useState } from "react";
-import { View, Text, Image, TextInput, Button, Modal } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  Button,
+  Modal,
+  TouchableOpacity,
+} from "react-native";
 import Context from "../context/Context";
 import { signIn, signUp } from "../firebase";
 export default function SignIn() {
@@ -14,20 +21,29 @@ export default function SignIn() {
   } = useContext(Context);
 
   async function handlePress() {
-    if (!email || !password || email.length <8 || password.length < 8) {
+    if (!email || !password || email.length < 8 || password.length < 8) {
       if (password.length < 8 || !password) {
         setV1(true);
-        return
-      }else{
+        return;
+      } else {
         setV2(true);
-        return
+        return;
       }
     }
-    if (mode === "signUp") {
-      await signUp(email, password);
+    for (var i = 0; i < 3; i++) {
+      if (email[-1] === " ") {
+        email.pop();
+      }
     }
-    if (mode === "signIn") {
-      await signIn(email, password);
+    try {
+      if (mode === "signUp") {
+        await signUp(email, password);
+      }
+      if (mode === "signIn") {
+        await signIn(email, password);
+      }
+    } catch {
+      setV2(true);
     }
   }
   return (
@@ -55,8 +71,8 @@ export default function SignIn() {
             justifyContent: "center",
           }}
         >
-          <Text>هل تعتبر هذه كلمة مرور</Text>
-          <Button title="تعديل" onPress={() => setV1(false)}/>
+          <Text>ينصح باستعمال كلمة مرور أقوى</Text>
+          <Button title="تعديل" onPress={() => setV1(false)} />
         </View>
       </Modal>
       <Modal
@@ -76,7 +92,7 @@ export default function SignIn() {
           }}
         >
           <Text>هل تعتبر هذا بريدا الاكترونيا</Text>
-          <Button title="تعديل" onPress={() => setV2(false)}/>
+          <Button title="تعديل" onPress={() => setV2(false)} />
         </View>
       </Modal>
       <Text
@@ -93,7 +109,7 @@ export default function SignIn() {
         <TextInput
           placeholder="البريد الاكتروني"
           value={email}
-          onChangeText={setEmail}
+          onChangeText={(txt) => setEmail(txt)}
           style={{
             borderBottomColor: colors.primary,
             borderBottomWidth: 2,
@@ -104,7 +120,7 @@ export default function SignIn() {
           placeholder="كلمة المرور"
           textAlign="right"
           value={password}
-          onChangeText={setPassword}
+          onChangeText={(txt) => setPassword(txt)}
           secureTextEntry={true}
           style={{
             borderBottomColor: colors.primary,

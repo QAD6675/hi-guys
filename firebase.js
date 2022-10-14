@@ -8,19 +8,19 @@ import { getStorage } from "firebase/storage";
 import { initializeFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDRVKTrrbfyFhpjMDlA9HT869wwq8L5QC4",
-  authDomain: "hi-guys-7d28c.firebaseapp.com",
-  projectId: "hi-guys-7d28c",
-  storageBucket: "hi-guys-7d28c.appspot.com",
-  messagingSenderId: "904969734966",
-  appId: "1:904969734966:web:58a2a4f28a65c101e58197",
+  apiKey: "AIzaSyDFX9eqY603To_3E68Pg3GqTrvbIaeSXhk",
+  authDomain: "hy-guys.firebaseapp.com",
+  projectId: "hy-guys",
+  storageBucket: "hy-guys.appspot.com",
+  messagingSenderId: "497320092967",
+  appId: "1:497320092967:web:f14d2de95190130b007502"
 };
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const storage = getStorage(app);
 export const db = initializeFirestore(app, {
-  expirementalForceLongPolling: true,
+  experimentalForceLongPolling: true,
 });
 
 export function signIn(email, password) {
