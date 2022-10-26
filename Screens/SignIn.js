@@ -31,7 +31,7 @@ export default function SignIn() {
       }
     }
     for (var i = 0; i < 3; i++) {
-      if (email[-1] === " ") {
+      if (email[email.length-1] === " ") {
         email.pop();
       }
     }

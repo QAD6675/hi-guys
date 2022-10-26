@@ -167,11 +167,11 @@ export default function Chat() {
           <Actions
             {...props}
             containerStyle={{
-              margin: 10,
+              marginBottom: "20%",
             }}
             onPressActionButton={handlePhotoPicker}
             icon={() => (
-              <Ionicons name="camera" size={25} color={colors.iconGray} />
+              <Ionicons name="camera" size={28} color={colors.iconGray} />
             )}
           />
         )}
