@@ -1,2 +1,7 @@
 # hi-guys
-   this is my first fullstack project and took me very long time to complete please don't steal it
+##  setup
+   - basicly install node at https://nodejs.org/en/download/
+   - get react native at https://reactnative.dev/docs/environment-setup
+   - get expo at https://expo.dev
+##  release
+   download at https://qad-portfolio.web.app
